@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public AuthenticationResponseDTO register(UserRegisterDTO request) {
 
-        if(request.getPassword() == null || request.getPhoneNumber() == null || request.getRole() == null || request.getUsername() == null)
+        if(request.getPassword() == null || request.getPhoneNumber() == null || request.getUsername() == null)
             throw new UserErrorException("Input not valid! Please provide correct username, password, phone number and role");
 
         if(userRepository.existsByUsername(request.getUsername()))
@@ -122,7 +122,9 @@ public class UserServiceImpl implements UserService {
         if(!isRoleValid(request.getRole().toUpperCase()))
             throw new UserErrorException("Role must be a valid role (COSTUMER, ADMIN, STAFF)");
 
-        var user = request.convertToUser(getRole(request.getRole().toUpperCase()), passwordEncoder.encode(request.getPassword()));
+        var role = isRoleValid(request.getRole()) ? Role.valueOf(request.getRole()) : Role.COSTUMER;
+
+        var user = request.convertToUser(role, passwordEncoder.encode(request.getPassword()));
 
         userRepository.save(user);
         var claims  = new HashMap<String, Object>();

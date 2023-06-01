@@ -1,5 +1,6 @@
 package com.spring.binar.challenge_5.controller.rest;
 
+import com.spring.binar.challenge_5.dto.StaffRequestDTO;
 import com.spring.binar.challenge_5.models.Staff;
 import com.spring.binar.challenge_5.service.StaffService;
 import com.spring.binar.challenge_5.utils.ResponseHandler;
@@ -45,7 +46,7 @@ public class StaffController {
     }
 
     @PostMapping("/staff")
-    public ResponseEntity<Object> save(@RequestBody Staff film){
+    public ResponseEntity<Object> save(@RequestBody StaffRequestDTO film){
         staffService.save(film);
         return ResponseHandler.generateResponse(SUCCESS_EDIT_MSG, HttpStatus.OK,film);
     }

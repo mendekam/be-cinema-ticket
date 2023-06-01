@@ -1,8 +1,10 @@
 package com.spring.binar.challenge_5.service.implementation;
 
+import com.spring.binar.challenge_5.dto.CostumerRequestDTO;
 import com.spring.binar.challenge_5.dto.CostumerResponseDto;
 import com.spring.binar.challenge_5.models.Costumer;
 import com.spring.binar.challenge_5.repos.CostumerRepository;
+import com.spring.binar.challenge_5.repos.UserRepository;
 import com.spring.binar.challenge_5.service.CostumerService;
 import jakarta.activation.MimetypesFileTypeMap;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.Objects;
 public class CostumerServiceImpl implements CostumerService {
 
     private final CostumerRepository costumerRepository;
+    private final UserRepository userRepository;
     private final CloudinaryService cloudinaryService;
     private static final Logger logger = LogManager.getLogger(CostumerServiceImpl.class);
 
@@ -47,15 +50,13 @@ public class CostumerServiceImpl implements CostumerService {
     }
 
     @Override
-    public CostumerResponseDto save(Costumer costumer) {
-        if (costumer.getFirstName() == null || costumer.getLastName().isEmpty()
-                || costumer.getEmail() == null || costumer.getEmail().isEmpty()
+    public CostumerResponseDto save(CostumerRequestDTO request) {
+        if (request.getFirstName() == null || request.getLastName().isEmpty()
+                || request.getEmail() == null || request.getEmail().isEmpty()
         )  throw new RuntimeException("Data costumer is not valid");
+        var user = userRepository.findById(request.getUserId()).orElseThrow(() -> new RuntimeException("User not exist"));
 
-        costumer.setCostumerId(0);
-
-        var date = Calendar.getInstance();
-        costumer.setLastUpdate(date.getTime().getTime());
+        var costumer = request.toCostumer(user);
 
         return costumerRepository.save(costumer).convertToCostumerDto();
     }

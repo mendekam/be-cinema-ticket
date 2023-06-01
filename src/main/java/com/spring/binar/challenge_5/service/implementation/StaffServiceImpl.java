@@ -1,8 +1,10 @@
 package com.spring.binar.challenge_5.service.implementation;
 
+import com.spring.binar.challenge_5.dto.StaffRequestDTO;
 import com.spring.binar.challenge_5.dto.StaffResponseDto;
 import com.spring.binar.challenge_5.models.Staff;
 import com.spring.binar.challenge_5.repos.StaffRepository;
+import com.spring.binar.challenge_5.repos.UserRepository;
 import com.spring.binar.challenge_5.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -20,6 +22,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class StaffServiceImpl implements StaffService {
     private final StaffRepository staffRepository;
+    private final UserRepository userRepository;
     private final CloudinaryService cloudinaryService;
     private final Logger logger = LoggerFactory.getLogger(StaffServiceImpl.class);
 
@@ -44,13 +47,14 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public StaffResponseDto save(Staff staff) {
-        if (staff.getName() == null || staff.getName().isEmpty()
-                || staff.getIdCard() == null || staff.getIdCard().length() != 10
+    public StaffResponseDto save(StaffRequestDTO request) {
+        if (request.getName() == null || request.getName().isEmpty()
+                || request.getIdCard() == null || request.getIdCard().length() != 10
         )  throw new RuntimeException("Data staff is not valid");
 
-        staff.setStaffId(0);
-        staff.setLastUpdate(System.currentTimeMillis());
+        var user = userRepository.findById(request.getUserId()).orElseThrow(() -> new RuntimeException("User not exist"));
+
+        var staff = request.toStaff(user);
 
         return staffRepository.save(staff).convertToStaffDto();
     }

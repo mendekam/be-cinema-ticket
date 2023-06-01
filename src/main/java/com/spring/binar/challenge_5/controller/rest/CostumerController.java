@@ -1,5 +1,6 @@
 package com.spring.binar.challenge_5.controller.rest;
 
+import com.spring.binar.challenge_5.dto.CostumerRequestDTO;
 import com.spring.binar.challenge_5.models.Costumer;
 import com.spring.binar.challenge_5.service.CostumerService;
 import com.spring.binar.challenge_5.utils.ResponseHandler;
@@ -47,7 +48,7 @@ public class CostumerController {
     }
 
     @PostMapping("/costumer")
-    public ResponseEntity<Object> save(@RequestBody Costumer film){
+    public ResponseEntity<Object> save(@RequestBody CostumerRequestDTO film){
         costumerService.save(film);
         return ResponseHandler.generateResponse(SUCCESS_EDIT_MSG, HttpStatus.OK,film);
     }

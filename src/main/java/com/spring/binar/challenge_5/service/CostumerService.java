@@ -1,5 +1,6 @@
 package com.spring.binar.challenge_5.service;
 
+import com.spring.binar.challenge_5.dto.CostumerRequestDTO;
 import com.spring.binar.challenge_5.dto.CostumerResponseDto;
 import com.spring.binar.challenge_5.models.Costumer;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ public interface CostumerService {
 
     CostumerResponseDto findById(int id);
 
-    CostumerResponseDto save(Costumer costumer);
+    CostumerResponseDto save(CostumerRequestDTO costumer);
 
     CostumerResponseDto save(MultipartFile file, Integer costumerId);
 

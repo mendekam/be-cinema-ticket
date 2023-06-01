@@ -1,5 +1,6 @@
 package com.spring.binar.challenge_5.service;
 
+import com.spring.binar.challenge_5.dto.StaffRequestDTO;
 import com.spring.binar.challenge_5.dto.StaffResponseDto;
 import com.spring.binar.challenge_5.models.Staff;
 import org.springframework.data.domain.Page;
@@ -15,7 +16,7 @@ public interface StaffService {
 
     StaffResponseDto findById(int id);
 
-    StaffResponseDto save(Staff staff);
+    StaffResponseDto save(StaffRequestDTO staff);
 
     StaffResponseDto save(MultipartFile file, Integer staffId);
 
