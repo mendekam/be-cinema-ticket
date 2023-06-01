@@ -17,13 +17,13 @@ public class ScheduleRequestDTO implements Serializable {
     private int studioId;
     private int filmId;
     
-    @JsonCreator
-    public ScheduleRequestDTO(int scheduleId, Long fromDate, Long toDate, int price, int studioId, int filmId){
-        this.scheduleId = scheduleId;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
-        this.price = price;
-        this.studioId = studioId;
-        this.filmId = filmId;
-    }
+    // @JsonCreator
+    // public ScheduleRequestDTO(int scheduleId, Long fromDate, Long toDate, int price, int studioId, int filmId){
+    //     this.scheduleId = scheduleId;
+    //     this.fromDate = fromDate;
+    //     this.toDate = toDate;
+    //     this.price = price;
+    //     this.studioId = studioId;
+    //     this.filmId = filmId;
+    // }   
 }
