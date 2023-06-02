@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 @Data
 @Builder
-public class ScheduleRequestDTO implements Serializable {
+public class ScheduleRequestDTO {
     private long fromDate;
     private long toDate;
     private int price;
@@ -26,6 +26,7 @@ public class ScheduleRequestDTO implements Serializable {
                 .price(price)
                 .studio(studio)
                 .film(film)
+                .scheduleId(0)
                 .build();
     }
 }

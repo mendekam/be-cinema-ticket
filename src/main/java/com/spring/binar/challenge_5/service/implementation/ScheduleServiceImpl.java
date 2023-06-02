@@ -62,12 +62,9 @@ public class ScheduleServiceImpl implements ScheduleService {
             throw new RuntimeException("Date range not valid");
 
         var studio = studioRepository.findById(request.getStudioId()).orElseThrow(() -> new RuntimeException("No studio or film found"));
-        var film = filmRepository.findById(request.getFilmId()).orElseThrow(() -> new RuntimeException("No studio or film found"));;
+        var film = filmRepository.findById(request.getFilmId()).orElseThrow(() -> new RuntimeException("No studio or film found"));
 
-
-        var schedule = modelMapper.map(request, Schedule.class);
-        schedule.setFilm(film);
-        schedule.setStudio(studio);
+        var schedule = request.toSchedule(studio, film);
 
         var result = scheduleRepository.save(schedule);
 
