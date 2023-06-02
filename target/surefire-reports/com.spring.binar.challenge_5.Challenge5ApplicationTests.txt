@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.spring.binar.challenge_5.Challenge5ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.455 s - in com.spring.binar.challenge_5.Challenge5ApplicationTests

@@ -1,0 +1,44 @@
+{
+  "groups": [
+    {
+      "name": "binar.spring",
+      "type": "com.spring.binar.challenge_5.config.ApplicationProperties",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "binar.spring.cloudinary-api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties"
+    },
+    {
+      "name": "binar.spring.cloudinary-api-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties"
+    },
+    {
+      "name": "binar.spring.cloudinary-cloud-name",
+      "type": "java.lang.String",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties"
+    },
+    {
+      "name": "binar.spring.jwt-expiration-ms",
+      "type": "java.lang.Integer",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "binar.spring.jwt-refresh-expiration-ms",
+      "type": "java.lang.Integer",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "binar.spring.jwt-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.spring.binar.challenge_5.config.ApplicationProperties"
+    }
+  ],
+  "hints": []
+}
